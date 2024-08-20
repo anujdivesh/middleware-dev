@@ -4,6 +4,6 @@ from .models import DownloadMethod
 
 
 class DownloadMethodAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("id","name",)
 
 admin.site.register(DownloadMethod,DownloadMethodAdmin)

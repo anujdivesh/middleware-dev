@@ -4,6 +4,6 @@ from .models import DataType
 
 
 class DataTypeAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("id","name",)
 
 admin.site.register(DataType,DataTypeAdmin)

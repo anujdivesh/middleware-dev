@@ -4,6 +4,6 @@ from .models import Country
 
 
 class CountryAdmin(admin.ModelAdmin):
-    list_display = ("short_name", "long_name", "crs",)
+    list_display = ("id","short_name", "long_name", "crs",)
 
 admin.site.register(Country,CountryAdmin)

@@ -6,7 +6,7 @@ from django.forms import TextInput, Textarea
 
 
 class DatasetAdmin(admin.ModelAdmin):
-    list_display = ("short_name", "long_name", "data_type","data_provider",)
+    list_display = ("id","short_name", "long_name", "data_type","download_method","data_provider",)
     #formfield_overrides = {
     #    models.CharField: {'widget': TextInput(attrs={'size':'70'})}
     #}

@@ -5,10 +5,7 @@ from data_type.models import DataType
 class Dataset(models.Model):
     short_name = models.CharField(max_length=255)
     long_name = models.CharField(max_length=255)
-    data_type = models.OneToOneField(
-        DataType,
-        on_delete=models.CASCADE
-    )
+    data_type = models.ForeignKey(DataType, on_delete=models.CASCADE, related_name='data_type')
     data_provider = models.CharField(max_length=255)
     data_source_url = models.CharField(max_length=255)
     data_download_url = models.CharField(max_length=255)
@@ -16,13 +13,10 @@ class Dataset(models.Model):
     username = models.CharField(max_length=255,null=True,blank=True)
     password = models.CharField(max_length=255,null=True,blank=True)
     API_key = models.CharField(max_length=255,null=True,blank=True)
-    download_method = models.OneToOneField(
-        DownloadMethod,
-        on_delete=models.CASCADE
-    )
-    download_file_prefix = models.CharField(max_length=255)
-    download_file_infix = models.CharField(max_length=255)
-    download_file_suffix = models.CharField(max_length=255)
+    download_method = models.ForeignKey(DownloadMethod, on_delete=models.CASCADE, related_name='download_method')
+    download_file_prefix = models.CharField(max_length=255,null=True,blank=True)
+    download_file_infix = models.CharField(max_length=255,null=True,blank=True)
+    download_file_suffix = models.CharField(max_length=255,null=True,blank=True)
     download_file_type = models.CharField(max_length=255)
     download_to_local_dir = models.BooleanField()
     local_directory_path = models.CharField(max_length=255)

@@ -4,6 +4,6 @@ from .models import TaskDownload
 
 
 class TaskDownloadAdmin(admin.ModelAdmin):
-    list_display = ("task_name", "class_id", "status","status",)
+    list_display = ("id","task_name", "class_id", "status","next_run_time","next_download_file",)
 
 admin.site.register(TaskDownload,TaskDownloadAdmin)

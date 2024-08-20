@@ -4,7 +4,7 @@ from datasets.models import Dataset
 class TaskDownload(models.Model):
     task_name = models.CharField(max_length=255)
     class_id = models.CharField(max_length=255)
-    dataset_id = models.OneToOneField(Dataset, on_delete=models.CASCADE)
+    dataset_id = models.ForeignKey(Dataset, on_delete=models.CASCADE, related_name='dataset_id')
     status = models.CharField(max_length=255,default='Ready')
     priority = models.CharField(max_length=255,default='High')
     duration = models.CharField(max_length=255,default='Indefinitely')
@@ -26,4 +26,4 @@ class TaskDownload(models.Model):
     created_by = models.CharField(max_length=255,default='root')
     launched_by = models.CharField(max_length=255,default='root')
     retain = models.BooleanField()
-    retain = models.CharField(max_length=255,null=True,blank=True)
+    retention_days = models.CharField(max_length=255,null=True,blank=True)
