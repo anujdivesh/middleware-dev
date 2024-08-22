@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,6 +26,11 @@ SECRET_KEY = "django-insecure-ta9qo@#2a9t0vr97)l@n63w8dvnks4g_c)287-#c%vdo-16l*x
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+
+#GDAL_LIBRARY_PATH = r'/opt/homebrew/opt/gdal/lib/libgdal.35.dylib'
+#GEOS_LIBRARY_PATH = r'/opt/homebrew/opt/geos/lib/libgeos_c.dylib'
+#GDAL_LIBRARY_PATH = r'C:\geo-project\venv\Lib\site-packages\osgeo\gdal304.dll'
+#GEOS_LIBRARY_PATH = r'C:\geo-project\venv\Lib\site-packages\osgeo\geos_c.dll'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -61,7 +66,8 @@ INSTALLED_APPS = [
     'task_download',
     'country',
     'data_type',
-    'download_method'
+    'download_method',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +85,7 @@ ROOT_URLCONF = "pop_middleware.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -150,7 +156,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -7,5 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'task_download', TaskDownloadView)
 
 urlpatterns = [
-    path('', include(router.urls))  
+    path('', include(router.urls)),
+    path('monitor/', views.table, name='monitor'),
+    path('main/', views.home, name='main'),
 ]

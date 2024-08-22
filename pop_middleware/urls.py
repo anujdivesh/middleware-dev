@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from datasets.views import datasets
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from . import views
 
 admin.site.site_header = "Ocean Portal Admin"
 admin.site.site_title = "Ocean Portal Middleware Portal"
@@ -25,8 +26,8 @@ admin.site.index_title = "Welcome to Ocean Portal Middleware"
 
 urlpatterns = [
     path('middleware', datasets, name='homepage'),
-    path('middleware', include('datasets.urls')),
-    path('middleware', include('task_download.urls')),
+    path('middleware/', include('datasets.urls')),
+    path('middleware/', include('task_download.urls')),
     path("middleware/admin/", admin.site.urls),
     path('middleware/api/', include('datasets.urls')),
     path('middleware/api/', include('task_download.urls')),
@@ -38,4 +39,5 @@ urlpatterns = [
     path('middleware/api/', include('data_type.urls')),
     path('middleware', include('download_method.urls')),
     path('middleware/api/', include('download_method.urls')),
+    path('home/', views.nav, name='nav'),
 ]

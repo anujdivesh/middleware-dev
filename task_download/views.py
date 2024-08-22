@@ -10,10 +10,30 @@ from .serializers import TaskDownloadSerializer
 from rest_framework.decorators import action
 from rest_framework import viewsets
 from .permissions import IsAuthenticatedForPOSTOnly
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
 
 def task_download(request):
     return HttpResponse("Hello world!")
+
+def home(request):
+    return render(request, 'main.html')
+
+
+def table(request):
+    current_time = datetime.now()
+    emplist = TaskDownload.objects.all() 
+    page = request.GET.get('page', 1)
+  
+    paginator = Paginator(emplist, 20)
+    try:
+        employees = paginator.page(page)
+    except PageNotAnInteger:
+        employees = paginator.page(1)
+    except EmptyPage:
+        employees = paginator.page(paginator.num_pages)
+    
+    return render(request, 'monitor.html', { 'employees': employees,'current_time':current_time })
 
 class TaskDownloadView(viewsets.ViewSet):
     permission_classes = [IsAuthenticatedForPOSTOnly] 
