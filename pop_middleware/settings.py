@@ -61,13 +61,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'bootstrap5',
     'datasets',
     'rest_framework',
     'task_download',
     'country',
     'data_type',
     'download_method',
-    'bootstrap5',
+    'layer_web_map',
+    'webapp_product',
+    'submenu_3',
+    'submenu_2',
+    'submenu_1'
 ]
 
 MIDDLEWARE = [
@@ -117,7 +122,7 @@ DATABASES = {
         'NAME': 'ocean-middleware',
         'USER': 'postgres',
         'PASSWORD': 'Oceanportal2017*',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }

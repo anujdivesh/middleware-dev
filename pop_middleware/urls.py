@@ -25,19 +25,28 @@ admin.site.site_title = "Ocean Portal Middleware Portal"
 admin.site.index_title = "Welcome to Ocean Portal Middleware"
 
 urlpatterns = [
-    path('middleware', datasets, name='homepage'),
-    path('middleware/', include('datasets.urls')),
-    path('middleware/', include('task_download.urls')),
+    #DISPLAY PAGES
+    path('middleware', views.data, name='homepage2'),
+    path('middleware/data', views.data, name='data'),
+    path('middleware/products', views.products, name='products'),
+    path('middleware/api', views.api, name='api'),
+    path('middleware/database', views.database, name='database'),
+    path('middleware/server', views.server, name='server'),
+
+    #ADMIN
     path("middleware/admin/", admin.site.urls),
+
+    #APIS
     path('middleware/api/', include('datasets.urls')),
     path('middleware/api/', include('task_download.urls')),
     path('middleware/api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('middleware/api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
-    path('middleware', include('country.urls')),
     path('middleware/api/', include('country.urls')),
-    path('middleware', include('data_type.urls')),
     path('middleware/api/', include('data_type.urls')),
-    path('middleware', include('download_method.urls')),
     path('middleware/api/', include('download_method.urls')),
-    path('home/', views.nav, name='nav'),
+    path('middleware/api/', include('webapp_product.urls')),
+    path('middleware/api/', include('layer_web_map.urls')),
+    path('middleware/api/', include('submenu_3.urls')),
+    path('middleware/api/', include('submenu_2.urls')),
+    path('middleware/api/', include('submenu_1.urls')),
 ]
