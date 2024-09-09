@@ -27,6 +27,7 @@ admin.site.index_title = "Welcome to Ocean Portal Middleware"
 urlpatterns = [
     #DISPLAY PAGES
     path('middleware', views.data, name='homepage2'),
+    path('middleware/', views.data, name='homepage3'),
     path('middleware/data', views.data, name='data'),
     path('middleware/products', views.products, name='products'),
     path('middleware/api', views.api, name='api'),

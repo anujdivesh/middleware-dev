@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-ta9qo@#2a9t0vr97)l@n63w8dvnks4g_c)287-#c%vdo-16l*x
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CORS_ALLOW_ALL_ORIGINS = True
 #GDAL_LIBRARY_PATH = r'/opt/homebrew/opt/gdal/lib/libgdal.35.dylib'
 #GEOS_LIBRARY_PATH = r'/opt/homebrew/opt/geos/lib/libgeos_c.dylib'
 #GDAL_LIBRARY_PATH = r'C:\geo-project\venv\Lib\site-packages\osgeo\gdal304.dll'
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     'bootstrap5',
     'datasets',
     'rest_framework',
@@ -76,6 +77,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -122,7 +124,8 @@ DATABASES = {
         'NAME': 'ocean-middleware',
         'USER': 'postgres',
         'PASSWORD': 'Oceanportal2017*',
-        'HOST': 'db',
+        #'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
