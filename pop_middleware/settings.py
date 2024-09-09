@@ -25,6 +25,9 @@ SECRET_KEY = "django-insecure-ta9qo@#2a9t0vr97)l@n63w8dvnks4g_c)287-#c%vdo-16l*x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CSRF_TRUSTED_ORIGINS=['https://*.spc.int',"http://localhost*"]
+
+
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 #GDAL_LIBRARY_PATH = r'/opt/homebrew/opt/gdal/lib/libgdal.35.dylib'
