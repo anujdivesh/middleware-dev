@@ -27,6 +27,10 @@ class LayerWebMap(models.Model):
     opacity = models.FloatField(null=True,blank=True)
     legend_url = models.CharField(max_length=255)
     update_legend = models.BooleanField()
+    is_composite = models.BooleanField()
+    generate_png = models.BooleanField()
+    enable_chart = models.BooleanField()
+    chart_style = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return f"{self.layer_title}"

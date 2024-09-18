@@ -35,6 +35,7 @@ class Dataset(models.Model):
     has_variables = models.BooleanField()
     variables = models.CharField(max_length=255,null=True,blank=True)
     subset = models.BooleanField()
+    convert_longitude = models.BooleanField()
     xmin_xmax = models.CharField(max_length=255,null=True,blank=True)
     ymin_ymax = models.CharField(max_length=255,null=True,blank=True)
     create_latest = models.BooleanField()
