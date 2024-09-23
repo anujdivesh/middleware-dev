@@ -31,6 +31,9 @@ class LayerWebMap(models.Model):
     generate_png = models.BooleanField()
     enable_chart = models.BooleanField()
     chart_style = models.CharField(max_length=255,null=True,blank=True)
+    has_height = models.BooleanField()
+    has_depth = models.BooleanField()
+    update_thredds = models.BooleanField()
 
     def __str__(self):
         return f"{self.layer_title}"

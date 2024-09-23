@@ -27,6 +27,3 @@ class TaskDownload(models.Model):
     launched_by = models.CharField(max_length=255,default='root')
     retain = models.BooleanField()
     retention_days = models.CharField(max_length=255,null=True,blank=True)
-    update_thredds = models.BooleanField()
-    update_url_thredds = models.CharField(max_length=255,null=True,blank=True)
-    update_api_url = models.CharField(max_length=255,null=True,blank=True)

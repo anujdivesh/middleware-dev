@@ -20,7 +20,7 @@ def nav(request):
 
 def data(request):
     current_time = datetime.now()
-    emplist = TaskDownload.objects.all() 
+    emplist = TaskDownload.objects.all().order_by('id')
     page = request.GET.get('page', 1)
   
     paginator = Paginator(emplist, 20)
