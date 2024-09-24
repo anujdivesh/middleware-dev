@@ -23,6 +23,8 @@ class LayerWebMap(models.Model):
     numcolorbands = models.IntegerField(default=250)
     timeIntervalStart = models.DateTimeField()
     timeIntervalEnd = models.DateTimeField()
+    has_specific_timestep = models.BooleanField()
+    specific_timestemps = models.CharField(max_length=255,null=True,blank=True)
     period = models.CharField(max_length=255)
     interval_step = models.CharField(max_length=255,null=True,blank=True)
     opacity = models.FloatField(null=True,blank=True)
