@@ -18,15 +18,15 @@ def submenu_1(request):
 
 class SubMenu1View(viewsets.ViewSet):
     permission_classes = [IsAuthenticatedForPOSTOnly] 
-    queryset = SubMenu1.objects.all()
+    queryset = SubMenu1.objects.all().order_by('id')
 
     def list(self, request):
-        queryset = SubMenu1.objects.all()
+        queryset = SubMenu1.objects.all().order_by('id')
         serializer = SubMenu1Serializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = SubMenu1.objects.all()
+        queryset = SubMenu1.objects.all().order_by('id')
         user = get_object_or_404(queryset, pk=pk)
         serializer = SubMenu1Serializer(user)
         return Response(serializer.data)

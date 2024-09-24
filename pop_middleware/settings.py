@@ -127,8 +127,8 @@ DATABASES = {
         'NAME': 'ocean-middleware',
         'USER': 'postgres',
         'PASSWORD': 'Oceanportal2017*',
-        'HOST': 'db',
-        #'HOST': 'localhost',
+        #'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }

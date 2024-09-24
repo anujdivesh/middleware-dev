@@ -5,4 +5,3 @@ class WebProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = WebProduct
         fields = ('__all__') 
-        depth = 1

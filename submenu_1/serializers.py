@@ -5,4 +5,4 @@ class SubMenu1Serializer(serializers.ModelSerializer):
     class Meta:
         model = SubMenu1
         fields = ('__all__') 
-        depth = 4
+        depth = 2

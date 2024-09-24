@@ -24,6 +24,9 @@ admin.site.site_header = "Ocean Portal Admin"
 admin.site.site_title = "Ocean Portal Middleware Portal"
 admin.site.index_title = "Welcome to Ocean Portal Middleware"
 
+admin.site.site_url = '/middleware'  # Removes the 'View Site' link
+admin.site.site_header = 'Monitoring | Home'
+
 urlpatterns = [
     #DISPLAY PAGES
     path('middleware', views.data, name='homepage2'),
