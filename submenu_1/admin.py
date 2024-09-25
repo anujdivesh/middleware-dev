@@ -4,6 +4,6 @@ from .models import SubMenu1
 
 
 class SubMenu1Admin(admin.ModelAdmin):
-    list_display = ("title",)
+    list_display = ("title","display_title",)
 
 admin.site.register(SubMenu1,SubMenu1Admin)
