@@ -38,24 +38,27 @@ CORS_ALLOW_ALL_ORIGINS = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Access token expiry time
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),  # Access token expiry time
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),   
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=60),  # Access token expiry time
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),  # Access token expiry time
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=1)
 }
 # Application definition
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -68,15 +71,21 @@ INSTALLED_APPS = [
     'bootstrap5',
     'datasets',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'task_download',
     'country',
     'data_type',
     'download_method',
     'layer_web_map',
     'webapp_product',
-    'submenu_3',
-    'submenu_2',
-    'submenu_1'
+    'main_menu',
+    'theme',
+    'django_filters',
+    'project',
+    'tailored_menu',
+    'account.apps.AccountConfig',
+    'dashboard'
 ]
 
 MIDDLEWARE = [

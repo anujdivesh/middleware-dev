@@ -50,7 +50,10 @@ urlpatterns = [
     path('middleware/api/', include('download_method.urls')),
     path('middleware/api/', include('webapp_product.urls')),
     path('middleware/api/', include('layer_web_map.urls')),
-    path('middleware/api/', include('submenu_3.urls')),
-    path('middleware/api/', include('submenu_2.urls')),
-    path('middleware/api/', include('submenu_1.urls')),
+    path('middleware/api/', include('main_menu.urls')),
+    path('middleware/api/', include('theme.urls')),
+    path('middleware/api/', include('project.urls')),
+    path('middleware/api/', include('tailored_menu.urls')),
+    path('middleware/api/', include('account.urls')),
+    path('middleware/api/', include('dashboard.urls')),
 ]

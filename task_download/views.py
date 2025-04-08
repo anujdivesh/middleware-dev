@@ -37,6 +37,8 @@ class TaskDownloadView(viewsets.ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
+        if not request.user.is_authenticated:
+            return Response({"detail": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
         serializer = TaskDownloadSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -44,6 +46,8 @@ class TaskDownloadView(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk=None):
+        if not request.user.is_authenticated:
+            return Response({"detail": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
         queryset = TaskDownload.objects.all()
         item = get_object_or_404(queryset, pk=pk)
         serializer = TaskDownloadSerializer(item, data=request.data, partial=True)
@@ -53,6 +57,8 @@ class TaskDownloadView(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
+        if not request.user.is_authenticated:
+            return Response({"detail": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
         queryset = TaskDownload.objects.all()
         item = get_object_or_404(queryset, pk=pk)
         item.delete()
