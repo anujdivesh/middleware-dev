@@ -56,4 +56,5 @@ urlpatterns = [
     path('middleware/api/', include('tailored_menu.urls')),
     path('middleware/api/', include('account.urls')),
     path('middleware/api/', include('dashboard.urls')),
+    path('middleware/api/', include('widget.urls')),
 ]

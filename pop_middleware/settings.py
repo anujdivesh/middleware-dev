@@ -85,7 +85,8 @@ INSTALLED_APPS = [
     'project',
     'tailored_menu',
     'account.apps.AccountConfig',
-    'dashboard'
+    'dashboard',
+    'widget'
 ]
 
 MIDDLEWARE = [
