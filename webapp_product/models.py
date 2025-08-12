@@ -23,6 +23,8 @@ class WebProduct(models.Model):
     metadata_five_value = models.CharField(max_length=2000,null=True,blank=True)
     metadata_six_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_six_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_seven_id = models.CharField(max_length=255,null=True,blank=True)
+    metadata_seven_value = models.CharField(max_length=2000,null=True,blank=True)
     enabled = models.BooleanField()
 
     def __str__(self):
