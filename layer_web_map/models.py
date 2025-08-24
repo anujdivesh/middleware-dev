@@ -2,6 +2,7 @@ from django.db import models
 from datasets.models import Dataset
 # Create your models here.
 class LayerWebMap(models.Model):
+    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE, related_name='layer_web_maps_id')
     enabled = models.BooleanField()
     zoomToLayer = models.BooleanField()
     logscale= models.BooleanField()
@@ -46,6 +47,7 @@ class LayerWebMap(models.Model):
     has_depth = models.BooleanField()
     update_thredds = models.BooleanField()
     restricted = models.BooleanField()
-
+    enable_cog = models.BooleanField()
+    cog_params = models.CharField(max_length=2000,null=True,blank=True)
     def __str__(self):
         return f"{self.layer_title}"
