@@ -36,6 +36,7 @@ class LayerWebMap(models.Model):
     enable_get_map = models.BooleanField()
     get_map_url = models.CharField(max_length=2000,null=True,blank=True)
     get_map_names = models.CharField(max_length=2000,null=True,blank=True)
+    no_of_plots = models.IntegerField(default=999)
     enable_chart_timeseries = models.BooleanField()
     timeseries_url = models.CharField(max_length=2000,null=True,blank=True)
     timeseries_variables = models.CharField(max_length=2000,null=True,blank=True)
