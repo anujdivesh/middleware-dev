@@ -4,6 +4,7 @@ services:
   web:
     build: .
     container_name: middleware_web
+    restart: unless-stopped
     command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -27,6 +28,7 @@ services:
       - "$POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT"
   nginx:
     build: ./nginx
+    restart: unless-stopped
     volumes:
       - static_volume:/code/staticfiles
     ports:
