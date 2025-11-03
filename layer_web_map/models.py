@@ -50,5 +50,6 @@ class LayerWebMap(models.Model):
     restricted = models.BooleanField()
     enable_cog = models.BooleanField()
     cog_params = models.CharField(max_length=2000,null=True,blank=True)
+    unit_conversion = models.BooleanField()
     def __str__(self):
         return f"{self.layer_title}"
