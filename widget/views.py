@@ -40,14 +40,14 @@ class WidgetView(viewsets.ModelViewSet):
         # Optionally apply filter backends (for filtering by country etc)
         final_queryset = self.filter_queryset(final_queryset)
 
-        serializer = WidgetSerializer(final_queryset, many=True)
+        serializer = WidgetSerializer(final_queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         widget = get_object_or_404(Widget, pk=pk)
         # Unrestricted: anyone can retrieve
         if not widget.is_restricted:
-            serializer = WidgetSerializer(widget)
+            serializer = WidgetSerializer(widget, context={"request": request})
             return Response(serializer.data)
         # Restricted: check auth and country
         if not request.user.is_authenticated:
@@ -58,7 +58,7 @@ class WidgetView(viewsets.ModelViewSet):
             return Response({"detail": "Your account does not have a country set."}, status=status.HTTP_400_BAD_REQUEST)
         if widget.country_id != user_country_id:
             return Response({"detail": "You are not allowed to access this widget."}, status=status.HTTP_403_FORBIDDEN)
-        serializer = WidgetSerializer(widget)
+        serializer = WidgetSerializer(widget, context={"request": request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
@@ -66,5 +66,5 @@ class WidgetView(viewsets.ModelViewSet):
         # Placeholder action, implement logic as needed
         if not request.user.is_authenticated:
             return Response({"detail": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
-        serializer = WidgetSerializer(self.queryset, many=True)
+        serializer = WidgetSerializer(self.queryset, many=True, context={"request": request})
         return Response(serializer.data)

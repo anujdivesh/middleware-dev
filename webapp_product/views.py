@@ -22,16 +22,16 @@ class WebProductView(viewsets.ViewSet):
 
     def list(self, request):
         queryset = WebProduct.objects.all()
-        serializer = WebProductSerializer(queryset, many=True)
+        serializer = WebProductSerializer(queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = WebProduct.objects.all()
         user = get_object_or_404(queryset, pk=pk)
-        serializer = WebProductSerializer(user)
+        serializer = WebProductSerializer(user, context={"request": request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def items_not_done(self, request):
-        serializer = WebProductSerializer(self.queryset, many=True)
+        serializer = WebProductSerializer(self.queryset, many=True, context={"request": request})
         return Response(serializer.data)

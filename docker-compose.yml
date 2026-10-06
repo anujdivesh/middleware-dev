@@ -9,10 +9,18 @@ services:
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
+      - ./media:/code/media
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=$POSTGRESDB_DATABASE
+      - DB_USER=$POSTGRESDB_USER
+      - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
     ports:
       - 8000:8000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     image: postgres:14
     container_name: middleware_db
@@ -26,11 +34,17 @@ services:
       - POSTGRES_DB=$POSTGRESDB_DATABASE
     ports:
       - "$POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
   nginx:
     build: ./nginx
     restart: unless-stopped
     volumes:
       - static_volume:/code/staticfiles
+      - ./media:/code/media:ro
     ports:
       - 8089:80
     depends_on:

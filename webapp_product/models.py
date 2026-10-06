@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 from layer_web_map.models import LayerWebMap
 # Create your models here.
 class WebProduct(models.Model):
@@ -11,20 +12,38 @@ class WebProduct(models.Model):
     east_bound_longitude = models.FloatField()
     south_bound_latitude = models.FloatField()
     north_bound_latitude = models.FloatField()
+    metadata_one_enabled = models.BooleanField(default=True)
     metadata_one_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_one_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_two_enabled = models.BooleanField(default=True)
     metadata_two_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_two_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_three_enabled = models.BooleanField(default=True)
     metadata_three_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_three_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_four_enabled = models.BooleanField(default=True)
     metadata_four_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_four_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_five_enabled = models.BooleanField(default=True)
     metadata_five_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_five_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_six_enabled = models.BooleanField(default=True)
     metadata_six_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_six_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_seven_enabled = models.BooleanField(default=True)
     metadata_seven_id = models.CharField(max_length=255,null=True,blank=True)
     metadata_seven_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_eight_enabled = models.BooleanField(default=True)
+    metadata_eight_id = models.CharField(max_length=255,null=True,blank=True)
+    metadata_eight_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_nine_enabled = models.BooleanField(default=True)
+    metadata_nine_id = models.CharField(max_length=255,null=True,blank=True)
+    metadata_nine_value = models.CharField(max_length=2000,null=True,blank=True)
+    metadata_ten_enabled = models.BooleanField(default=True)
+    metadata_ten_id = models.CharField(max_length=255,null=True,blank=True)
+    metadata_ten_value = models.CharField(max_length=2000,null=True,blank=True)
+    file = models.FileField(upload_to='webapp_product/',null=True,blank=True,
+        validators=[FileExtensionValidator(['pdf','png','jpg','jpeg','gif','webp','svg'])])
     enabled = models.BooleanField()
 
     def __str__(self):

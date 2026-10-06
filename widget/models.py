@@ -8,6 +8,7 @@ class Widget(models.Model):
     display_title = models.CharField(max_length=2000,null=True,blank=True)
     description = models.CharField(max_length=2000,null=True,blank=True)
     display_image_url = models.CharField(max_length=255,null=True,blank=True)
+    display_image = models.ImageField(upload_to='widget/',null=True,blank=True)
     information = models.CharField(max_length=2000,null=True,blank=True)
     configuration = models.CharField(max_length=2000,null=True,blank=True)
     component_name = models.CharField(max_length=2000,null=True,blank=True)

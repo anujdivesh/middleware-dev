@@ -35,16 +35,16 @@ class MainMenuView(viewsets.ModelViewSet):
         # Debugging: Print the filtered queryset to see what's being returned
         print(f"Filtered queryset: {queryset}")
 
-        serializer = MainMenuSerializer(queryset, many=True)
+        serializer = MainMenuSerializer(queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = MainMenu.objects.all().order_by('id')
         user = get_object_or_404(queryset, pk=pk)
-        serializer = MainMenuSerializer(user)
+        serializer = MainMenuSerializer(user, context={"request": request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def items_not_done(self, request):
-        serializer = MainMenuSerializer(self.queryset, many=True)
+        serializer = MainMenuSerializer(self.queryset, many=True, context={"request": request})
         return Response(serializer.data)

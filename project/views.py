@@ -17,16 +17,16 @@ class ProjectView(viewsets.ViewSet):
 
     def list(self, request):
         queryset = Project.objects.all()
-        serializer = ProjectSerializer(queryset, many=True)
+        serializer = ProjectSerializer(queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = Project.objects.all()
         user = get_object_or_404(queryset, pk=pk)
-        serializer = ProjectSerializer(user)
+        serializer = ProjectSerializer(user, context={"request": request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def items_not_done(self, request):
-        serializer = ProjectSerializer(self.queryset, many=True)
+        serializer = ProjectSerializer(self.queryset, many=True, context={"request": request})
         return Response(serializer.data)

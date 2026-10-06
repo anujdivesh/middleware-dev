@@ -86,7 +86,8 @@ INSTALLED_APPS = [
     'tailored_menu',
     'account.apps.AccountConfig',
     'dashboard',
-    'widget'
+    'widget',
+    'notice',
 ]
 
 MIDDLEWARE = [
@@ -134,12 +135,12 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ocean-middleware',
-        'USER': 'postgres',
-        'PASSWORD': 'Oceanportal2017*',
-        #'HOST': 'db',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        # Defaults are for local development; docker-compose sets these for production (HOST=db)
+        'NAME': os.environ.get('DB_NAME', 'ocean-middleware'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'Oceanportal2017*'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 
@@ -182,6 +183,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Uploaded files
+MEDIA_URL = "/middleware/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+
+# Behind nginx / the production proxy: use the original host and scheme when
+# building absolute URLs (e.g. links to uploaded files in API responses)
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Default primary key field type

@@ -46,6 +46,7 @@ class LayerWebMap(models.Model):
     table_variables = models.CharField(max_length=2000,null=True,blank=True)
     table_variable_label = models.CharField(max_length=2000,null=True,blank=True)
     has_depth = models.BooleanField()
+    depth_values = models.CharField(max_length=1000,null=True,blank=True)
     update_thredds = models.BooleanField()
     restricted = models.BooleanField()
     enable_cog = models.BooleanField()
